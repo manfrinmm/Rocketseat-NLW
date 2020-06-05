@@ -18,7 +18,12 @@ class PointsController {
       .distinct()
       .select("points.*");
 
-    return res.json(points);
+    const serializedPoints = points.map(point => ({
+      ...point,
+      image_url: point.image,
+    }));
+
+    return res.json(serializedPoints);
   }
 
   async store(req: Request, res: Response) {
