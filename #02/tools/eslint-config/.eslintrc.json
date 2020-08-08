@@ -1,0 +1,85 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks",
+    "prettier",
+    "eslint-plugin-import-helpers"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "camelcase": "off",
+    "no-underscore-dangle": "off",
+    "react/prop-types": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": ["/^react/", "module", "/~/", ["parent", "sibling", "index"]],
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        }
+      }
+    ],
+
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "class-methods-use-this": "off",
+    "@typescript-eslint/camelcase": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "proffy",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "./packages/**",
+      "./tools/**"
+    ]
+  },
+  "devDependencies": {
+    "@tools/eslint-config": "*"
+  }
+}
