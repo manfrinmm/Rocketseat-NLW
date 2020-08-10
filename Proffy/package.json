@@ -5,9 +5,14 @@
   "license": "MIT",
   "workspaces": {
     "packages": [
-      "./packages/**",
-      "./tools/**"
+      "packages/*",
+      "packages/clients/*",
+      "packages/shared/*",
+      "tools/*"
     ]
+  },
+  "scripts": {
+    "postinstall": "cd ./packages/clients/mobile && expo-yarn-workspaces postinstall"
   },
   "devDependencies": {
     "@tools/eslint-config": "*"

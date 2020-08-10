@@ -1,37 +1,63 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import "./styles.css";
+import { api } from "@shared/services";
+
 import whatsappIcon from "../../assets/images/icons/whatsapp.svg";
 
-interface TeacherItemProps {
-  avatar_url: string;
+export interface Teacher {
+  id: number;
+  subject: string;
+  cost: number;
   name: string;
+  avatar_url: string;
+  whatsapp: string;
+  bio: string;
 }
 
-const TeacherItem: React.FC = () => {
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  const { id, subject, cost, name, avatar_url, whatsapp, bio } = teacher;
+
+  const createNewConnection = useCallback(() => {
+    api.post("/connections", {
+      user_id: id,
+    });
+  }, [id]);
+
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://github.com/manfrinmm.png" alt="matheus" />
+        <img src={avatar_url} alt={name} />
         <div>
-          <strong>MatheusMM</strong>
-          <span>Matematica</span>
+          <strong>{name}</strong>
+          <span>{subject}</span>
         </div>
       </header>
 
-      <p>
-        aaaaaaaaaaaaaaa <br /> aaaaaaaaaaaa
-      </p>
+      <p>{bio}</p>
 
       <footer>
         <p>
           Preço/hora
-          <strong>R$ 222,00</strong>
+          <strong>
+            {Intl.NumberFormat("pt-br", {
+              currency: "BRL",
+              style: "currency",
+            }).format(cost)}
+          </strong>
         </p>
-        <button type="button">
+        <a
+          href={`https://api.whatsapp.com/send?phone=${whatsapp}`}
+          target="__blank"
+          onClick={createNewConnection}
+        >
           <img src={whatsappIcon} alt="Whatsapp" />
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </article>
   );
